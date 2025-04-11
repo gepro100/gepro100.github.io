@@ -23,7 +23,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Lato', sans-serif;
   font-weight: 700;
   color: rgba(230, 230, 230, 0.95);
-  text-shadow: none !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 * {
@@ -31,10 +31,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Global text styling for ALL paragraphs */
-p, li, blockquote, div, span {
+p, li, blockquote, div {
   color: rgba(220, 220, 220, 0.95) !important;
-  text-shadow: none !important;
   font-weight: 400;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 /* Specific component text styling */
@@ -50,7 +50,7 @@ blockquote,
 .summary-text,
 .header-subtitle {
   color: rgba(220, 220, 220, 0.95) !important;
-  text-shadow: none !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 /* For any text in darker sections */
@@ -63,7 +63,7 @@ blockquote,
 /* Add this to ensure quotes and special text containers are visible */
 blockquote, .quote {
   color: rgba(220, 220, 220, 0.95) !important;
-  text-shadow: none !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   border-left: 4px solid rgba(255, 255, 255, 0.4);
   padding-left: 1rem;
 }
@@ -71,7 +71,7 @@ blockquote, .quote {
 /* Additional selectors to catch ALL possible text elements */
 app-root *:not(a):not(button):not(input):not(select):not(textarea) {
   color: rgba(220, 220, 220, 0.95) !important;
-  text-shadow: none !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4) !important;
 }
 
 /* Target specific mission statement and header texts */
@@ -85,18 +85,61 @@ header p,
 header div,
 .header-container * {
   color: rgba(220, 220, 220, 0.95) !important;
-  text-shadow: none !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5) !important;
   font-weight: 500 !important;
 }
 
-/* Remove all other duplicate CSS */
+/* Increase contrast for ALL spans (often used for special text) */
+span {
+  color: rgba(220, 220, 220, 0.95) !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Add a subtle background to text containers for extra contrast */
+.text-container, .bio-container, .summary-container {
+  background-color: rgba(0, 0, 0, 0.15);
+  padding: 10px;
+  border-radius: 4px;
+}
+
+/* Remove all styling for the Professional Mission section since it's being deleted */
+.professional-mission,
+.mission-section,
+section[id="mission"],
+.professional-mission-container,
+div[class*="mission"],
+.professional-mission h2,
+.mission-section h2,
+section[id="mission"] h2,
+div[class*="mission"] h2,
+.professional-mission p,
+.mission-section p,
+section[id="mission"] p,
+div[class*="mission"] p,
+p:contains("Creating ethical AI systems"),
+html body app-root .professional-mission p,
+html body app-root .mission-section p,
+html body app-root section[id="mission"] p,
+html body app-root div[id*="mission"] p,
+html body app-root div[class*="mission"] p,
+html body app-root p strong:contains("Creating ethical AI"),
+html body app-root [class*="mission"] *,
+p:nth-child(2):contains("Creating ethical") {
+  /* No need for specific styling as we're removing the section */
+  /* This CSS block can actually be deleted entirely from your styles.css */
+}
+
+/* Override ALL text shadows everywhere */
+* {
+  text-shadow: none !important;
+}
 
 /* Contact section text improvements - updated color for better contrast */
 .contact-form-container h3,
 .contact-form-container .form-intro,
 section#contact h3,
 section#contact p.form-intro {
-  color: #2c3e50 !important;
+  color: #2c3e50 !important; /* Dark blue-grey for good contrast */
   text-shadow: none !important;
   font-weight: 500 !important;
   margin-bottom: 15px !important;
