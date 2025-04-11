@@ -22,15 +22,30 @@ jobs:
       - name: Install dependencies
         run: npm install --legacy-peer-deps
 
-      - name: Build
-        run: npm run build -- --configuration production --base-href=/
+      - name: Debug build output
+        run: |
+          npm run build:github
+          find dist -type d | sort
 
       - name: Create 404.html
-        run: cp dist/gepro100-website/browser/index.html dist/gepro100-website/browser/404.html
+        run: |
+          if [ -d "dist/gepro100-website/browser" ]; then
+            cp dist/gepro100-website/browser/index.html dist/gepro100-website/browser/404.html
+            echo "Using browser subdirectory"
+            DEPLOY_DIR="dist/gepro100-website/browser"
+          else
+            cp dist/gepro100-website/index.html dist/gepro100-website/404.html
+            echo "Using root dist directory"
+            DEPLOY_DIR="dist/gepro100-website"
+          fi
+          echo "deploy_dir=$DEPLOY_DIR" >> $GITHUB_ENV
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: dist/gepro100-website/browser
+          folder: ${{ env.deploy_dir }}
           token: ${{ secrets.GITHUB_TOKEN }}
           clean: true
+
+      - name: Add .nojekyll file
+        run: touch dist/${{ env.deploy_dir }}/.nojekyll
