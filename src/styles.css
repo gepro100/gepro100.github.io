@@ -1,0 +1,193 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: #ffffff;
+  color: rgba(220, 220, 220, 0.95);
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #181a1b;
+    color: #e8e6e3;
+  }
+}
+
+a {
+  color: #4285f4;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  color: rgba(230, 230, 230, 0.95);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Global text styling for ALL paragraphs */
+p, li, blockquote, div {
+  color: rgba(220, 220, 220, 0.95) !important;
+  font-weight: 400;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Specific component text styling */
+.section-content p,
+.about-text p,
+.experience-item p,
+.project-description p,
+.education-item p,
+.skill-description,
+.bio-text,
+.intro-text,
+blockquote,
+.summary-text,
+.header-subtitle {
+  color: rgba(220, 220, 220, 0.95) !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* For any text in darker sections */
+.dark-section p,
+.dark-section div,
+.dark-section li {
+  color: rgba(220, 220, 220, 0.95) !important;
+}
+
+/* Add this to ensure quotes and special text containers are visible */
+blockquote, .quote {
+  color: rgba(220, 220, 220, 0.95) !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  border-left: 4px solid rgba(255, 255, 255, 0.4);
+  padding-left: 1rem;
+}
+
+/* Additional selectors to catch ALL possible text elements */
+app-root *:not(a):not(button):not(input):not(select):not(textarea) {
+  color: rgba(220, 220, 220, 0.95) !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Target specific mission statement and header texts */
+.mission-statement,
+.tagline,
+.header-text,
+.intro-tagline,
+.bio-summary,
+.profile-intro,
+header p,
+header div,
+.header-container * {
+  color: rgba(220, 220, 220, 0.95) !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5) !important;
+  font-weight: 500 !important;
+}
+
+/* Increase contrast for ALL spans (often used for special text) */
+span {
+  color: rgba(220, 220, 220, 0.95) !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Add a subtle background to text containers for extra contrast */
+.text-container, .bio-container, .summary-container {
+  background-color: rgba(0, 0, 0, 0.15);
+  padding: 10px;
+  border-radius: 4px;
+}
+
+/* Remove all styling for the Professional Mission section since it's being deleted */
+.professional-mission,
+.mission-section,
+section[id="mission"],
+.professional-mission-container,
+div[class*="mission"],
+.professional-mission h2,
+.mission-section h2,
+section[id="mission"] h2,
+div[class*="mission"] h2,
+.professional-mission p,
+.mission-section p,
+section[id="mission"] p,
+div[class*="mission"] p,
+p:contains("Creating ethical AI systems"),
+html body app-root .professional-mission p,
+html body app-root .mission-section p,
+html body app-root section[id="mission"] p,
+html body app-root div[id*="mission"] p,
+html body app-root div[class*="mission"] p,
+html body app-root p strong:contains("Creating ethical AI"),
+html body app-root [class*="mission"] *,
+p:nth-child(2):contains("Creating ethical") {
+  /* No need for specific styling as we're removing the section */
+  /* This CSS block can actually be deleted entirely from your styles.css */
+}
+
+/* Override ALL text shadows everywhere */
+* {
+  text-shadow: none !important;
+}
+
+/* Contact section text improvements - updated color for better contrast */
+.contact-form-container h3,
+.contact-form-container .form-intro,
+section#contact h3,
+section#contact p.form-intro {
+  color: #2c3e50 !important; /* Dark blue-grey for good contrast */
+  text-shadow: none !important;
+  font-weight: 500 !important;
+  margin-bottom: 15px !important;
+  font-size: 1.25rem !important;
+  letter-spacing: 0.01em !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+}
+
+/* Apply a subtle background to make text more readable */
+.contact-form-container h3,
+section#contact h3 {
+  font-size: 1.5rem !important;
+  padding-bottom: 10px !important;
+  position: relative !important;
+  display: inline-block !important;
+}
+
+/* Add a subtle underline to heading with updated color */
+.contact-form-container h3:after,
+section#contact h3:after {
+  content: '' !important;
+  position: absolute !important;
+  left: 0 !important;
+  bottom: 0 !important;
+  height: 2px !important;
+  width: 50px !important;
+  background-color: #2c3e50 !important; /* Updated to match text color */
+}
+
+/* Ensure the form intro text is clear and readable */
+.contact-form-container .form-intro,
+section#contact p.form-intro {
+  background-color: rgba(255, 255, 255, 0.1) !important; /* Lighter background */
+  color: #2c3e50 !important; /* Dark blue-grey */
+  padding: 10px 15px !important;
+  border-radius: 4px !important;
+  margin-bottom: 20px !important;
+  font-size: 1rem !important;
+}
+
+/* Ensure form labels are readable */
+.contact-form label {
+  color: #2c3e50 !important; /* Dark blue-grey */
+  text-shadow: none !important;
+  font-weight: 500 !important;
+  margin-bottom: 5px !important;
+  display: block !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+}

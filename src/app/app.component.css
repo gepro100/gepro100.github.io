@@ -2113,3 +2113,23 @@ header {
   border-radius: 0 0 4px 4px;
   margin-top: -0.5rem;
 }
+
+/* Add some basic styling to ensure content is visible */
+body, html {
+  background-color: #f5f5f5;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+header, main, footer {
+  display: block;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Make sure text is visible */
+h1, h2, h3, p {
+  color: #333;
+}

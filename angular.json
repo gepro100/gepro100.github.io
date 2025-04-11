@@ -32,8 +32,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": [],
-            "baseHref": "/gepro100-website/"
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -49,7 +48,8 @@
                   "maximumError": "8kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "baseHref": "/gepro100-website/"
             },
             "development": {
               "optimization": false,

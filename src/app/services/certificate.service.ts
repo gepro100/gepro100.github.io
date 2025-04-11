@@ -4,6 +4,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CertificateService {
+  constructor() {}
+
   // Only store public metadata about certificates, not actual documents
   private certificates = [
     {
