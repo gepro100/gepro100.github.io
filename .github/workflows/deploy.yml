@@ -23,14 +23,26 @@ jobs:
         run: npm install --legacy-peer-deps
 
       - name: Build
-        run: npm run build -- --configuration production --base-href=/
+        run: npm run build:github
+
+      - name: List dist directory structure
+        run: |
+          ls -la dist/
+          ls -la dist/gepro100-website/ || echo "No browser directory"
 
       - name: Create 404.html
-        run: cp dist/gepro100-website/browser/index.html dist/gepro100-website/browser/404.html
+        run: |
+          if [ -d "dist/gepro100-website/browser" ]; then
+            cp dist/gepro100-website/browser/index.html dist/gepro100-website/browser/404.html
+            echo "Using browser directory structure"
+          else
+            cp dist/gepro100-website/index.html dist/gepro100-website/404.html
+            echo "Using standard directory structure"
+          fi
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: dist/gepro100-website/browser
+          folder: dist/gepro100-website
           token: ${{ secrets.GITHUB_TOKEN }}
           clean: true
