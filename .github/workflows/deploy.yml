@@ -9,6 +9,8 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -22,30 +24,38 @@ jobs:
       - name: Install dependencies
         run: npm install --legacy-peer-deps
 
-      - name: Debug build output
-        run: |
-          npm run build:github
-          find dist -type d | sort
+      - name: Build Angular App
+        run: npm run build -- --configuration production --base-href=/
 
-      - name: Create 404.html
+      - name: Create deployment directory
         run: |
+          # Create clean deployment directory
+          mkdir -p _deployment
+
+          # Check build output structure and copy files
           if [ -d "dist/gepro100-website/browser" ]; then
-            cp dist/gepro100-website/browser/index.html dist/gepro100-website/browser/404.html
-            echo "Using browser subdirectory"
-            DEPLOY_DIR="dist/gepro100-website/browser"
+            echo "✅ Using Angular 19+ structure"
+            cp -r dist/gepro100-website/browser/* _deployment/
           else
-            cp dist/gepro100-website/index.html dist/gepro100-website/404.html
-            echo "Using root dist directory"
-            DEPLOY_DIR="dist/gepro100-website"
+            echo "✅ Using standard Angular structure"
+            cp -r dist/gepro100-website/* _deployment/
           fi
-          echo "deploy_dir=$DEPLOY_DIR" >> $GITHUB_ENV
 
-      - name: Deploy
+          # Create 404 page for SPA routing
+          echo "✅ Creating 404.html for SPA routing"
+          cp _deployment/index.html _deployment/404.html
+
+          # Create .nojekyll file to disable Jekyll processing
+          echo "✅ Creating .nojekyll file"
+          touch _deployment/.nojekyll
+
+          # List deployment contents for verification
+          echo "📦 Deployment directory contents:"
+          ls -la _deployment/
+
+      - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: ${{ env.deploy_dir }}
+          folder: _deployment
           token: ${{ secrets.GITHUB_TOKEN }}
           clean: true
-
-      - name: Add .nojekyll file
-        run: touch dist/${{ env.deploy_dir }}/.nojekyll
